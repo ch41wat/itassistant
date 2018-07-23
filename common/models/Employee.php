@@ -54,6 +54,11 @@ class Employee extends \yii\db\ActiveRecord
             'employee_picture' => 'รูปภาพ',
         ];
     }
+    public function getDepartment()
+    {
+        return $this->hasOne(Department::className(), ['id' => 'department_id']);
+    }
+
     public function getUser()
     {
         return $this->hasOne(User::className(), ['id' => 'user_id']);
