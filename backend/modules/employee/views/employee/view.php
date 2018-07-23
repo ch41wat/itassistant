@@ -12,6 +12,21 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="employee-view">
 
+    <div class="text-center">
+        <?= Html::img('uploads/employee/'. $model->picture, ['class' => 'thumbnail', 'width' => 80]) ?>
+    </div>
+    <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+//            'id',
+            'user.username',
+            'user.email',
+            'firstname',
+            'lastname',
+//            'picture',
+            'department.name',
+        ],
+    ]) ?>
     <p>
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
@@ -22,18 +37,4 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
     </p>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-//            'id',
-            'user.username',
-            'user.email',
-            'firstname',
-            'lastname',
-            'picture',
-            'department.name',
-        ],
-    ]) ?>
-
 </div>
