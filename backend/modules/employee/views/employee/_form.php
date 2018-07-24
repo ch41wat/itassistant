@@ -24,6 +24,8 @@ use yii\helpers\ArrayHelper;
     <?= $form->field($model, 'firstname')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'lastname')->textInput(['maxlength' => true]) ?>
+    
+    <?= $form->field($model, 'tel')->textInput(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'employee_picture')->fileInput(); ?>
 
