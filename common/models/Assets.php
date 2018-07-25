@@ -40,8 +40,8 @@ class Assets extends \yii\db\ActiveRecord
         return [
             [['purchase_date'], 'safe'],
             [['purchase_cost'], 'number'],
-            [['description', 'image', 'status'], 'string'],
-            [['user_id', 'warranty_months', 'supplier_id'], 'integer'],
+            [['description', 'image', 'status', 'supplier_id'], 'string'],
+            [['user_id', 'warranty_months'], 'integer'],
             [['name', 'serial', 'mac_address', 'order_number'], 'string', 'max' => 191],
             [['model'], 'string', 'max' => 200],
         ];

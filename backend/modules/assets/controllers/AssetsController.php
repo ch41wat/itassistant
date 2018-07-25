@@ -8,6 +8,7 @@ use backend\modules\assets\controllers\AssetsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * AssetsController implements the CRUD actions for Assets model.
@@ -66,7 +67,15 @@ class AssetsController extends Controller
     {
         $model = new Assets();
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
+            if($model->save()){
+                $file = UploadedFile::getInstance($model, 'image');
+                if($file->size!=0){
+                    $model->image = $model->id.'.'.$file->extension;
+                    $file->saveAs('uploads/asset/'.$model->id.'.'.$file->extension);
+                }
+                $model->save();
+            }
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
