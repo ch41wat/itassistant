@@ -18,6 +18,9 @@ return [
         'assets' => [
             'class' => 'backend\modules\assets\Module',
         ],
+        'tasks' => [
+            'class' => 'backend\modules\tasks\Module',
+        ],
     ],
     'components' => [
         'request' => [
