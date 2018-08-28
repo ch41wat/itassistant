@@ -21,6 +21,12 @@ return [
         'tasks' => [
             'class' => 'backend\modules\tasks\Module',
         ],
+         'tasktype' => [
+            'class' => 'backend\modules\tasktype\Module',
+        ],
+         'department' => [
+            'class' => 'backend\modules\department\Module',
+        ],
     ],
     'components' => [
         'request' => [

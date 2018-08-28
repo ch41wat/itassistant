@@ -60,4 +60,8 @@ class Tasks extends \yii\db\ActiveRecord
             'description' => 'อื่น ๆ',
         ];
     }
+    public function getTasktype()
+    {
+        return $this->hasOne(Tasktype::className(), ['id' => 'type_names']);
+    }
 }
