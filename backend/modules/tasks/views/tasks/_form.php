@@ -8,6 +8,7 @@ use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model common\models\Tasks */
 /* @var $form yii\widgets\ActiveForm */
+$user = yii::$app->user->identity->username;
 ?>
 
 <div class="tasks-form">
@@ -18,13 +19,19 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'type')->dropDownList(ArrayHelper::map(Tasktype::find()->all(), 'type_id', 'type_name')) ?>
 
-    <?= $form->field($model, 'user')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'priority')->dropDownList([ 'low' => 'Low', 'medium' => 'Medium', 'high' => 'High', ], ['prompt' => '']) ?>
+    <?= $id = yii::$app->user->identity->username; ?>
+    <?=
+    $form->field($model, 'user')
+            ->hiddenInput(['value' => $id])
+            ->label(false);
+    ?>
+
+    <?= $form->field($model, 'priority')->dropDownList(['low' => 'Low', 'medium' => 'Medium', 'high' => 'High',], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'staff')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status')->dropDownList([ 'pending' => 'Pending', 'wait for implove' => 'Wait for implove', 'progressing' => 'Progressing', 'complete' => 'Complete', ], ['prompt' => '']) ?>
+    <?= $form->field($model, 'status')->dropDownList(['pending' => 'Pending', 'wait for implove' => 'Wait for implove', 'progressing' => 'Progressing', 'complete' => 'Complete',], ['prompt' => '']) ?>
 
     <?= $form->field($model, 'request_date')->textInput() ?>
 

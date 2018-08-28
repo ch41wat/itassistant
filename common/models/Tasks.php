@@ -18,21 +18,19 @@ use Yii;
  * @property string $complete_date วัน/เวลาที่แก้ปัญหาเสร็จ
  * @property string $description อื่น ๆ
  */
-class Tasks extends \yii\db\ActiveRecord
-{
+class Tasks extends \yii\db\ActiveRecord {
+
     /**
      * {@inheritdoc}
      */
-    public static function tableName()
-    {
+    public static function tableName() {
         return 'tasks';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules()
-    {
+    public function rules() {
         return [
             [['task_name', 'type', 'user', 'priority', 'staff', 'status', 'request_date', 'complete_date', 'description'], 'required'],
             [['priority', 'status'], 'string'],
@@ -45,8 +43,7 @@ class Tasks extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels()
-    {
+    public function attributeLabels() {
         return [
             'task_id' => 'รหัสการแจ้ง',
             'task_name' => 'ปัญหา',
@@ -60,8 +57,12 @@ class Tasks extends \yii\db\ActiveRecord
             'description' => 'อื่น ๆ',
         ];
     }
-    public function getTasktype()
-    {
+
+    public function getTasktype() {
         return $this->hasOne(Tasktype::className(), ['id' => 'type_names']);
     }
+    public function getUser() {
+        return Yii::$app->user->identity->username;
+    }
+
 }
