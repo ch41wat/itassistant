@@ -9,8 +9,13 @@ $params = array_merge(
 return [
     'id' => 'app-frontend',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
     'controllerNamespace' => 'frontend\controllers',
+    'bootstrap' => ['log'],
+    'modules' => [
+        'tasks' => [
+            'class' => 'frontend\modules\tasks\Module',
+        ],
+    ],
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
@@ -21,7 +26,7 @@ return [
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
         'session' => [
-            // this is the name of the session cookie used for login on the frontend
+            // this is the name of the session cookie used for login on the backend
             'name' => 'advanced-frontend',
         ],
         'log' => [
@@ -36,6 +41,13 @@ return [
         'errorHandler' => [
             'errorAction' => 'site/error',
         ],
+        'view' => [
+         'theme' => [
+             'pathMap' => [
+                '@app/views' => '@theme/adminlte'
+             ],
+         ],
+    ],
         /*
         'urlManager' => [
             'enablePrettyUrl' => true,
