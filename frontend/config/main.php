@@ -15,6 +15,7 @@ return [
         'tasks' => [
             'class' => 'frontend\modules\tasks\Module',
         ],
+        'gridview' => ['class' => 'kartik\grid\Module']
     ],
     'components' => [
         'request' => [

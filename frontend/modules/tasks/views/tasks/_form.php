@@ -14,7 +14,7 @@ use yii\helpers\ArrayHelper;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'task_name')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'task_name')->textarea(['maxlength' => true]) ?>
 
     <?= $form->field($model, 'type')->dropDownList(ArrayHelper::map(Tasktype::find()->all(), 'type_id', 'type_name')) ?>
 
@@ -22,7 +22,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'staff')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
 
     <div class="form-group">
         <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
