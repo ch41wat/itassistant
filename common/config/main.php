@@ -2,6 +2,7 @@
 return [
     'name' => 'IT Assistant',
     'language' => 'th-TH',
+    'timeZone' => 'Asia/Bangkok',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',

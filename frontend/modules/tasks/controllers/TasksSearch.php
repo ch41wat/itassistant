@@ -18,8 +18,8 @@ class TasksSearch extends Tasks
     public function rules()
     {
         return [
-            [['task_id'], 'integer'],
-            [['task_name', 'type', 'user', 'priority', 'staff', 'status', 'request_date', 'complete_date', 'solution', 'description'], 'safe'],
+            [['task_id', 'created_at', 'updated_at'], 'integer'],
+            [['task_name', 'type', 'user', 'priority', 'staff', 'status', 'complete_date', 'solution', 'description'], 'safe'],
         ];
     }
 
@@ -60,7 +60,8 @@ class TasksSearch extends Tasks
         // grid filtering conditions
         $query->andFilterWhere([
             'task_id' => $this->task_id,
-            'request_date' => $this->request_date,
+            'created_at' => $this->created_at,
+            'updated_at' => $this->updated_at,
             'complete_date' => $this->complete_date,
         ]);
 
