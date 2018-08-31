@@ -1,10 +1,9 @@
 <?php
-
 use yii\helpers\Html;
-use kartik\grid\GridView;
-use yii\helpers\Url;
-use yii\bootstrap\Modal;
+use yii\grid\GridView;
 use yii\widgets\Pjax;
+use yii\bootstrap\Modal;
+use yii\helpers\Url;
 
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\modules\tasks\controllers\TasksSearch */
@@ -19,32 +18,25 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php // echo $this->render('_search', ['model' => $searchModel]);  ?>
 
     <p>
-        <?= Html::button('แจ้งงาน', ['value' => Url::to(['tasks/create']), 'title' => 'สร้างการแจ้งงาน', 'class' => 'btn btn-success', 'id' => 'activity-create-link']); ?>
+        <?= Html::button('แจ้งงาน', ['value' => Url::to('index.php?r=tasks/tasks/create'), 'class' => 'btn btn-success', 'id' => 'modalButton']) ?>
     </p>
-
-    <?php Pjax::begin(['id' => 'customer_pjax_id']); ?>
+    
     <?php
-    Modal::begin([
-        'id' => 'activity-modal',
-        'header' => '<h4 class="modal-title">การแจ้งงาน</h4>',
-        'size' => 'modal-lg',
-        'footer' => '<a href="#" class="btn btn-primary" data-dismiss="modal">ปิด</a>',
-    ]);
-    Modal::end();
+        Modal::begin([
+            'header' => '<h4>แจ้งงาน</h4>',
+            'id' => 'modal',
+            'size' => 'modal-small',
+        ]);
+        echo "<div id='modalContent'></div>";
+        Modal::end();
     ?>
+    
+    <?php Pjax::begin(); ?>
+    
     <?=
     GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
-        'responsive' => true,
-        'hover' => true,
-        'floatHeader' => true,
-        'pjax' => true,
-        'pjaxSettings' => [
-            'neverTimeout' => true,
-            'enablePushState' => false,
-            'options' => ['id' => 'CustomerGrid'],
-        ],
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
             'task_id',
@@ -64,5 +56,5 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]);
     ?>
-<?php Pjax::end() ?>
+    <?php Pjax::end() ?>
 </div>
