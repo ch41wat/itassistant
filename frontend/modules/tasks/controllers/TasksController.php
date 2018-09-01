@@ -49,7 +49,7 @@ class TasksController extends Controller {
      * @throws NotFoundHttpException if the model cannot be found
      */
     public function actionView($id) {
-        return $this->render('view', [
+        return $this->renderAjax('view', [
                     'model' => $this->findModel($id),
         ]);
     }
@@ -67,7 +67,7 @@ class TasksController extends Controller {
             $model->status = 'pending';
             if ($model->save()) {
                 return $this->redirect(['index']);
-            } 
+            }
         }
 
         return $this->renderAjax('create', [
@@ -89,7 +89,7 @@ class TasksController extends Controller {
             return $this->redirect(['view', 'id' => $model->task_id]);
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
                     'model' => $model,
         ]);
     }
