@@ -24,9 +24,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <?php
     Modal::begin([
-        'header' => '<h4>แจ้งงาน</h4>',
+        'header' => '<h4>การแจ้งงาน</h4>',
         'id' => 'activity-modal',
-        'size' => 'modal-lg',
+        'size' => 'modal-small',
     ]);
     echo "<div id='modalContent'></div>";
     Modal::end();
