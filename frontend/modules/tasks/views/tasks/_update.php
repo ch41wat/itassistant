@@ -26,23 +26,23 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'status')->dropDownList(['pending' => 'Pending', 'wait for implove' => 'Wait for implove', 'progressing' => 'Progressing', 'complete' => 'Complete',], ['prompt' => '']) ?>
 
     <?=
-    DatePicker::widget([
-        'model' => $model,
-        'attribute' => 'complete_date',
-        'template' => '{addon}{input}',
-        'clientOptions' => [
-            'autoclose' => false,
-            'format' => 'dd-M-yyyy'
-        ]
-    ]);
+    $form->field($model, 'complete_date')->widget(
+            DatePicker::className(), [
+                'inline' => false,
+                'clientOptions' => [
+                    'autoclose' => true,
+                    'format' => 'yy-m-d'
+                ]
+            ]
+    )
     ?>
 
     <?= $form->field($model, 'solution')->textarea(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
+<?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
 
     <div class="form-group">
-    <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+<?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
     </div>
 
 <?php ActiveForm::end(); ?>
