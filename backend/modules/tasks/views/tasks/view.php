@@ -35,8 +35,10 @@ $this->params['breadcrumbs'][] = $this->title;
             'priority',
             'staff',
             'status',
-            'request_date',
+            'created_at',
+            'updated_at',
             'complete_date',
+            'solution',
             'description',
         ],
     ]) ?>

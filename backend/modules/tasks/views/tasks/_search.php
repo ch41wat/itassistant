@@ -4,7 +4,7 @@ use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 
 /* @var $this yii\web\View */
-/* @var $model backend\modules\tasks\controllers\TasksSearch */
+/* @var $model frontend\modules\tasks\controllers\TasksSearch */
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
@@ -29,9 +29,13 @@ use yii\widgets\ActiveForm;
 
     <?php // echo $form->field($model, 'status') ?>
 
-    <?php // echo $form->field($model, 'request_date') ?>
+    <?php // echo $form->field($model, 'created_at') ?>
+
+    <?php // echo $form->field($model, 'updated_at') ?>
 
     <?php // echo $form->field($model, 'complete_date') ?>
+
+    <?php // echo $form->field($model, 'solution') ?>
 
     <?php // echo $form->field($model, 'description') ?>
 
