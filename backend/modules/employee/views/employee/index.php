@@ -7,6 +7,7 @@ use yii\helpers\ArrayHelper;
 use common\models\Department;
 use yii\bootstrap\Modal;
 use yii\helpers\Url;
+
 /* @var $this yii\web\View */
 /* @var $searchModel backend\modules\employee\controllers\EmployeeSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -15,8 +16,8 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="employee-index">
 
-   <p>
-        <?= Html::button('เพิ่มพนักงาน', ['value' => Url::to('index.php?r=employee/employee/create'), 'class' => 'btn btn-success', 'id' => 'activity-create-link']) ?>
+    <p>
+<?= Html::button('เพิ่มพนักงาน', ['value' => Url::to('index.php?r=employee/employee/create'), 'class' => 'btn btn-success', 'id' => 'activity-create-link']) ?>
     </p>
 
     <?php
@@ -81,12 +82,12 @@ $this->params['breadcrumbs'][] = $this->title;
         });'); ?>
     <?php Pjax::begin(); ?>
 
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
 //            'id',
             'user.username',
             'user.email',
@@ -96,19 +97,18 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'attribute' => 'picture',
                 'format' => 'html',
-                'value' => function($model){
-                    return Html::img('uploads/employee/'.$model->picture, ['class' => 'thumnail', 'width' => 40]);
+                'value' => function($model) {
+                    return Html::img('uploads/employee/' . $model->picture, ['class' => 'thumnail', 'width' => 40]);
                 }
             ],
 //            'department.name',
             [
-              'attribute' => 'department_id',
-              'value' => function($model){
-                return $model->department->name;
-              },
-              'filter' => Html::activeDropDownList($searchModel, 'department_id', ArrayHelper::map(Department::find()->all(),'id', 'name'),['class' => 'form-control']),
+                'attribute' => 'department_id',
+                'value' => function($model) {
+                    return $model->department->name;
+                },
+                'filter' => Html::activeDropDownList($searchModel, 'department_id', ArrayHelper::map(Department::find()->all(), 'id', 'name'), ['class' => 'form-control']),
             ],
-
             ['class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                     'view' => function ($url, $model, $key) {
@@ -134,6 +134,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 ]
             ],
         ],
-    ]); ?>
-    <?php Pjax::end(); ?>
+    ]);
+    ?>
+<?php Pjax::end(); ?>
 </div>

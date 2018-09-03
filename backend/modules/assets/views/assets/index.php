@@ -22,7 +22,7 @@ $this->params['breadcrumbs'][] = $this->title;
     Modal::begin([
         'header' => '<h4>อุปกรณ์</h4>',
         'id' => 'activity-modal',
-        'size' => 'modal-small',
+        'size' => 'modal-lg',
     ]);
     echo "<div id='modalContent'></div>";
     Modal::end();
@@ -89,17 +89,17 @@ $this->params['breadcrumbs'][] = $this->title;
             'id',
             'name',
             'model',
-            'serial',
-            'mac_address',
+//            'serial',
+//            'mac_address',
             //'purchase_date',
             //'purchase_cost',
             //'order_number',
             //'description:ntext',
             //'image:ntext',
             //'user_id',
-            //'status',
+            'status',
             //'warranty_months',
-            //'supplier_id',
+            'supplier_id',
             ['class' => 'yii\grid\ActionColumn',
                 'buttons' => [
                     'view' => function ($url, $model, $key) {
