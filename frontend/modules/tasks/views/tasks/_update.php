@@ -39,12 +39,12 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'solution')->textarea(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
+    <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
 
     <div class="form-group">
-<?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('บันทึก', ['class' => 'btn btn-success']) ?>
     </div>
 
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

@@ -55,7 +55,7 @@ class EmployeeController extends Controller
      */
     public function actionView($id)
     {
-        return $this->render('view', [
+        return $this->renderAjax('view', [
             'model' => $this->findModel($id),
         ]);
     }
@@ -82,10 +82,10 @@ class EmployeeController extends Controller
                 $model->user_id = $user->id;
                 $model->save();
             }
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['index']);
         }
 
-        return $this->render('create', [
+        return $this->renderAjax('create', [
             'model' => $model,
             'user' => $user,
         ]);
@@ -114,10 +114,10 @@ class EmployeeController extends Controller
                 }
                 $model->save();    
             }
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view']);
         }
 
-        return $this->render('update', [
+        return $this->renderAjax('update', [
             'model' => $model,
             'user' => $user,
         ]);

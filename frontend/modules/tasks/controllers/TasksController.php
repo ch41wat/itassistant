@@ -82,16 +82,16 @@ class TasksController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionUpdate($id) {
+    public function actionUpdate($id)
+    {
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post())) {
-            if($model->save()){
-                return $this->redirect('index');
+            if ($model->save()) {
+                return $this->redirect(['index']);
             }
         }
-
-        return $this->renderAjax('update', [
+        return $this->renderAjax('_update', [
                     'model' => $model,
         ]);
     }
