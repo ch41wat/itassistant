@@ -1,7 +1,6 @@
 <?php
 
 namespace common\models;
-
 use yii\db\Expression;
 use yii\behaviors\TimestampBehavior;
 use Yii;
@@ -16,14 +15,14 @@ use Yii;
  * @property string $priority ระดับความเร่งด่วน
  * @property string $staff ผู้รับผิดชอบ
  * @property string $status สถานะ
- * @property int $created_at
- * @property int $updated_at
- * @property string $complete_date วัน/เวลาที่แก้ปัญหาเสร็จ
+ * @property string $created_at
+ * @property string $updated_at
+ * @property string $complete_date วันที่แก้ปัญหาเสร็จ
  * @property string $solution วิธีแก้ปัญหา
  * @property string $description รายละเอียด
  */
-class Tasks extends \yii\db\ActiveRecord {
-
+class Tasks extends \yii\db\ActiveRecord
+{
     /**
      * {@inheritdoc}
      */
@@ -37,20 +36,21 @@ class Tasks extends \yii\db\ActiveRecord {
             ],
         ];
     }
-
-    public static function tableName() {
+    
+    public static function tableName()
+    {
         return 'tasks';
     }
 
     /**
      * {@inheritdoc}
      */
-    public function rules() {
+    public function rules()
+    {
         return [
-            [['task_name', 'type', 'priority', 'staff', 'status',], 'required'],
+            [['task_name', 'type', 'user', 'priority', 'staff'], 'required'],
             [['priority', 'status'], 'string'],
-            [['created_at', 'updated_at'], 'integer'],
-            [['complete_date'], 'safe'],
+            [['created_at', 'updated_at', 'complete_date'], 'safe'],
             [['task_name', 'type', 'user', 'staff'], 'string', 'max' => 100],
             [['solution', 'description'], 'string', 'max' => 200],
         ];
@@ -59,7 +59,8 @@ class Tasks extends \yii\db\ActiveRecord {
     /**
      * {@inheritdoc}
      */
-    public function attributeLabels() {
+    public function attributeLabels()
+    {
         return [
             'task_id' => 'รหัสการแจ้ง',
             'task_name' => 'ปัญหา',
@@ -70,18 +71,16 @@ class Tasks extends \yii\db\ActiveRecord {
             'status' => 'สถานะ',
             'created_at' => 'วันที่แจ้ง',
             'updated_at' => 'วันที่อัพเดท',
-            'complete_date' => 'วัน/เวลาที่แก้ปัญหาเสร็จ',
+            'complete_date' => 'วันที่แก้ปัญหาเสร็จ',
             'solution' => 'วิธีแก้ปัญหา',
             'description' => 'รายละเอียด',
         ];
     }
-
+    
     public function getTasktype() {
         return $this->hasOne(Tasktype::className(), ['id' => 'type_names']);
     }
-
     public function getUser() {
         return Yii::$app->user->identity->username;
     }
-
 }

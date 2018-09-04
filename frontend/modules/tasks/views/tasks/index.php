@@ -10,24 +10,25 @@ use yii\helpers\Url;
 /* @var $searchModel frontend\modules\tasks\controllers\TasksSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'รายการแจ้งงาน';
+$this->title = 'การแจ้งงาน';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tasks-index">
-<p>
-    <?= Html::button('แจ้งงาน', ['value' => Url::to('index.php?r=tasks/tasks/create'), 'class' => 'btn btn-success', 'id' => 'activity-create-link']) ?>
-</p>
 
-<?php
-Modal::begin([
-    'header' => '<h4>การแจ้งงาน</h4>',
-    'id' => 'activity-modal',
-    'size' => 'modal-small',
-]);
-echo "<div id='modalContent'></div>";
-Modal::end();
-?>
-<?php $this->registerJs('
+    <p>
+        <?= Html::button('แจ้งงาน', ['value' => Url::to('index.php?r=tasks/tasks/create'), 'class' => 'btn btn-success', 'id' => 'activity-create-link']) ?>
+    </p>
+
+    <?php
+    Modal::begin([
+        'header' => '<h4>แจ้งงาน</h4>',
+        'id' => 'activity-modal',
+        'size' => 'modal-small',
+    ]);
+    echo "<div id='modalContent'></div>";
+    Modal::end();
+    ?>
+    <?php $this->registerJs('
         function init_click_handlers(){
             $("#activity-create-link").click(function(e) {
                     $.get(
@@ -52,7 +53,7 @@ Modal::end();
                         {
                             $("#activity-modal").find(".modal-body").html(data);
                             $(".modal-body").html(data);
-                            $(".modal-title").html("เปิดดูข้อมูลสมาชิก");
+                            $(".modal-title").html("เปิดดูข้อมูลการแจ้งงาน");
                             $("#activity-modal").modal("show");
                         }
                     );
@@ -68,7 +69,7 @@ Modal::end();
                         {
                             $("#activity-modal").find(".modal-body").html(data);
                             $(".modal-body").html(data);
-                            $(".modal-title").html("แก้ไขข้อมูลสมาชิก");
+                            $(".modal-title").html("แก้ไขข้อมูลการแจ้งงาน");
                             $("#activity-modal").modal("show");
                         }
                     );
@@ -78,52 +79,52 @@ Modal::end();
         $("#customer_pjax_id").on("pjax:success", function() {
           init_click_handlers(); //reactivate links in grid after pjax update
         });'); ?>
-<?php Pjax::begin(); ?>
-<?=
-GridView::widget([
-    'dataProvider' => $dataProvider,
-    'filterModel' => $searchModel,
-    'columns' => [
-        ['class' => 'yii\grid\SerialColumn'],
-        'task_id',
-        'task_name',
-        'type',
-        'user',
-        'priority',
-        'staff',
-        'status',
-        'created_at:dateTime', // แสดงเฉพาวันที่ แสดงวันที่เวลา
-        'updated_at:dateTime', // แสดงเฉพาวันที่
-        // กำหนดเอง อ่านเพิ่มเติม link ด้านล่าง
-        'complete_date',
-        'solution',
-        'description',
-        ['class' => 'yii\grid\ActionColumn',
-            'buttons' => [
-                'view' => function ($url, $model, $key) {
-                    return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', '#', [
-                                'class' => 'activity-view-link',
-                                'title' => 'เปิดดูข้อมูล',
-                                'data-toggle' => 'modal',
-                                'data-target' => '#activity-modal',
-                                'data-id' => $key,
-                                'data-pjax' => '0',
-                    ]);
-                },
-                'update' => function ($url, $model, $key) {
-                    return Html::a('<span class="glyphicon glyphicon-pencil"></span>', '#', [
-                                'class' => 'activity-update-link',
-                                'title' => 'แก้ไขข้อมูล',
-                                'data-toggle' => 'modal',
-                                'data-target' => '#activity-modal',
-                                'data-id' => $key,
-                                'data-pjax' => '0',
-                    ]);
-                },
-            ]
+    <?php Pjax::begin(); ?>
+
+    <?= GridView::widget([
+        'dataProvider' => $dataProvider,
+        'filterModel' => $searchModel,
+        'columns' => [
+            ['class' => 'yii\grid\SerialColumn'],
+
+            'task_id',
+            'task_name',
+            'type',
+            'user',
+            'priority',
+            'staff',
+            'status',
+            'created_at',
+            //'updated_at',
+            'complete_date',
+            //'solution',
+            //'description',
+
+            ['class' => 'yii\grid\ActionColumn',
+                'buttons' => [
+                    'view' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', '#', [
+                                    'class' => 'activity-view-link',
+                                    'title' => 'เปิดดูข้อมูล',
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#activity-modal',
+                                    'data-id' => $key,
+                                    'data-pjax' => '0',
+                        ]);
+                    },
+                    'update' => function ($url, $model, $key) {
+                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', '#', [
+                                    'class' => 'activity-update-link',
+                                    'title' => 'แก้ไขข้อมูล',
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#activity-modal',
+                                    'data-id' => $key,
+                                    'data-pjax' => '0',
+                        ]);
+                    },
+                ]
+            ],
         ],
-    ],
-]);
-?>
-<?php Pjax::end() ?>
+    ]); ?>
+    <?php Pjax::end(); ?>
 </div>

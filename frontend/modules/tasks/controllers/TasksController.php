@@ -12,12 +12,13 @@ use yii\filters\VerbFilter;
 /**
  * TasksController implements the CRUD actions for Tasks model.
  */
-class TasksController extends Controller {
-
+class TasksController extends Controller
+{
     /**
      * {@inheritdoc}
      */
-    public function behaviors() {
+    public function behaviors()
+    {
         return [
             'verbs' => [
                 'class' => VerbFilter::className(),
@@ -32,13 +33,14 @@ class TasksController extends Controller {
      * Lists all Tasks models.
      * @return mixed
      */
-    public function actionIndex() {
+    public function actionIndex()
+    {
         $searchModel = new TasksSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
-                    'searchModel' => $searchModel,
-                    'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 
@@ -48,9 +50,10 @@ class TasksController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionView($id) {
+    public function actionView($id)
+    {
         return $this->renderAjax('view', [
-                    'model' => $this->findModel($id),
+            'model' => $this->findModel($id),
         ]);
     }
 
@@ -59,7 +62,8 @@ class TasksController extends Controller {
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
-    public function actionCreate() {
+    public function actionCreate()
+    {
         $model = new Tasks();
 
         if ($model->load(Yii::$app->request->post())) {
@@ -71,7 +75,7 @@ class TasksController extends Controller {
         }
 
         return $this->renderAjax('create', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
 
@@ -86,13 +90,12 @@ class TasksController extends Controller {
     {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post())) {
-            if ($model->save()) {
-                return $this->redirect(['index']);
-            }
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            return $this->redirect(['index']);
         }
+
         return $this->renderAjax('_update', [
-                    'model' => $model,
+            'model' => $model,
         ]);
     }
 
@@ -103,7 +106,8 @@ class TasksController extends Controller {
      * @return mixed
      * @throws NotFoundHttpException if the model cannot be found
      */
-    public function actionDelete($id) {
+    public function actionDelete($id)
+    {
         $this->findModel($id)->delete();
 
         return $this->redirect(['index']);
@@ -116,12 +120,12 @@ class TasksController extends Controller {
      * @return Tasks the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id) {
+    protected function findModel($id)
+    {
         if (($model = Tasks::findOne($id)) !== null) {
             return $model;
         }
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-
 }
