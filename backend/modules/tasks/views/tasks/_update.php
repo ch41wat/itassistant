@@ -13,7 +13,11 @@ use dosamigos\datepicker\DatePicker;
 
 <div class="tasks-form">
 
-    <?php $form = ActiveForm::begin(); ?>
+    <?php
+    $form = ActiveForm::begin([
+                'options' => ['enctype' => 'multipart/form-data']
+    ]);
+    ?>
 
     <?= $form->field($model, 'task_name')->textInput(['maxlength' => true, "disabled" => "disabled"]) ?>
 
@@ -22,6 +26,8 @@ use dosamigos\datepicker\DatePicker;
     <?= $form->field($model, 'priority')->dropDownList(['high' => 'High', 'low' => 'Low',], ['prompt' => '', "disabled" => "disabled"]) ?>
 
     <?= $form->field($model, 'staff')->textInput(['maxlength' => true, "disabled" => "disabled"]) ?>
+
+    <?= $form->field($model, 'evidence_end_img')->fileinput(); ?>
 
     <?= $form->field($model, 'status')->dropDownList(['pending' => 'Pending', 'wait for implove' => 'Wait for implove', 'progressing' => 'Progressing', 'complete' => 'Complete',], ['prompt' => '']) ?>
 
@@ -39,12 +45,12 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'solution')->textarea(['maxlength' => true]) ?>
 
-        <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
+    <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
 
     <div class="form-group">
-    <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

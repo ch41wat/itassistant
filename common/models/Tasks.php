@@ -49,7 +49,7 @@ class Tasks extends \yii\db\ActiveRecord
     {
         return [
             [['task_name', 'type', 'user', 'priority', 'staff'], 'required'],
-            [['priority', 'status'], 'string'],
+            [['priority', 'status', 'evidence_start_img', 'evidence_end_img'], 'string'],
             [['created_at', 'updated_at', 'complete_date'], 'safe'],
             [['task_name', 'type', 'user', 'staff'], 'string', 'max' => 100],
             [['solution', 'description'], 'string', 'max' => 200],
@@ -68,6 +68,8 @@ class Tasks extends \yii\db\ActiveRecord
             'user' => 'ผู้แจ้ง',
             'priority' => 'ระดับความเร่งด่วน',
             'staff' => 'ผู้รับผิดชอบ',
+            'evidence_start_img' => 'หลักฐานการแจ้ง',
+            'evidence_end_img' => 'หลักฐานการแก้ไข',
             'status' => 'สถานะ',
             'created_at' => 'วัน/เวลาที่แจ้ง',
             'updated_at' => 'วันที่อัพเดท',

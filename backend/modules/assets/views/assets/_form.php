@@ -50,14 +50,14 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'status')->dropDownList(['พร้อมใช้' => 'พร้อมใช้', 'ส่งซ่อม' => 'ส่งซ่อม', 'มีผู้ใช้แล้ว' => 'มีผู้ใช้แล้ว',], ['prompt' => '']) ?>
 
-        <?= $form->field($model, 'warranty_months')->textInput() ?>
+    <?= $form->field($model, 'warranty_months')->textInput() ?>
 
-<?= $form->field($model, 'supplier_id')->textInput() ?>
+    <?= $form->field($model, 'supplier_id')->textInput() ?>
 
     <div class="form-group">
-<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>
