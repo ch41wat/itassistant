@@ -27,7 +27,7 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'updated_at')->textInput(["disabled" => "disabled"]) ?>
 
-<?= $form->field($model, 'status')->dropDownList(['pending' => 'Pending', 'wait for improve' => 'Wait for improve', 'progressing' => 'Progressing', 'complete' => 'Complete',], ['prompt' => '']) ?>
+    <?= $form->field($model, 'status')->dropDownList(['pending' => 'Pending', 'wait for improve' => 'Wait for improve', 'progressing' => 'Progressing', 'complete' => 'Complete',], ['prompt' => '']) ?>
 
 
     <?php
@@ -46,12 +46,12 @@ use kartik\date\DatePicker;
     ?>
     <?= $form->field($model, 'solution')->textarea(['maxlength' => true]) ?>
 
-<?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
+    <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
 
     <div class="form-group">
-<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
-<?php ActiveForm::end(); ?>
+    <?php ActiveForm::end(); ?>
 
 </div>

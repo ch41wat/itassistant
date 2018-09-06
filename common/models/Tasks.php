@@ -69,7 +69,7 @@ class Tasks extends \yii\db\ActiveRecord
             'priority' => 'ระดับความเร่งด่วน',
             'staff' => 'ผู้รับผิดชอบ',
             'status' => 'สถานะ',
-            'created_at' => 'วันที่แจ้ง',
+            'created_at' => 'วัน/เวลาที่แจ้ง',
             'updated_at' => 'วันที่อัพเดท',
             'complete_date' => 'วันที่แก้ปัญหาเสร็จ',
             'solution' => 'วิธีแก้ปัญหา',

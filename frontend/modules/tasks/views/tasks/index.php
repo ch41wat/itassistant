@@ -9,8 +9,7 @@ use yii\helpers\Url;
 /* @var $this yii\web\View */
 /* @var $searchModel frontend\modules\tasks\controllers\TasksSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
-
-$this->title = 'การแจ้งงาน';
+$this->title = 'ข้อมูลการแจ้งงาน';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tasks-index">
@@ -81,27 +80,38 @@ $this->params['breadcrumbs'][] = $this->title;
         });'); ?>
     <?php Pjax::begin(); ?>
 
-    <?= GridView::widget([
+    <?=
+    GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
         'columns' => [
             ['class' => 'yii\grid\SerialColumn'],
-
             'task_id',
             'task_name',
             'type',
             'user',
             'priority',
             'staff',
-            'status',
-            'created_at',
+            'created_at:dateTime',
             //'updated_at',
-            'complete_date',
+            'complete_date:date',
             //'solution',
             //'description',
-
+            'status',
             ['class' => 'yii\grid\ActionColumn',
+                'template' => '{update} {view}',
                 'buttons' => [
+                    'update' => function ($url, $model, $key) {
+                        return $model->status === 'complete' ?
+                                Html::a('<span class="glyphicon glyphicon-pencil"></span>', '#', [
+                                    'class' => 'activity-update-link',
+                                    'title' => 'เปิดดูข้อมูล',
+                                    'data-toggle' => 'modal',
+                                    'data-target' => '#activity-modal',
+                                    'data-id' => $key,
+                                    'data-pjax' => '0',
+                                ]) : Html::a('', 'javascript:void(0);');
+                    },
                     'view' => function ($url, $model, $key) {
                         return Html::a('<span class="glyphicon glyphicon-eye-open"></span>', '#', [
                                     'class' => 'activity-view-link',
@@ -112,19 +122,10 @@ $this->params['breadcrumbs'][] = $this->title;
                                     'data-pjax' => '0',
                         ]);
                     },
-                    'update' => function ($url, $model, $key) {
-                        return Html::a('<span class="glyphicon glyphicon-pencil"></span>', '#', [
-                                    'class' => 'activity-update-link',
-                                    'title' => 'แก้ไขข้อมูล',
-                                    'data-toggle' => 'modal',
-                                    'data-target' => '#activity-modal',
-                                    'data-id' => $key,
-                                    'data-pjax' => '0',
-                        ]);
-                    },
                 ]
             ],
         ],
-    ]); ?>
+    ]);
+    ?>
     <?php Pjax::end(); ?>
 </div>
