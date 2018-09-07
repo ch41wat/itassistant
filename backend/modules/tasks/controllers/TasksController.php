@@ -90,8 +90,8 @@ class TasksController extends Controller {
             if($model->save()){
                 $file = UploadedFile::getInstance($model, 'evidence_end_img');
                 if($file->size!=0){
-                    $model->evidence_end_img = $model->task_id.'.'.$file->extension;
-                    $file->saveAs('uploads/tasks/image/end/'.$model->id.'.'.$file->extension);
+                    $model->evidence_end_img = $model->task_id.'_end'.'.'.$file->extension;
+                    $file->saveAs('uploads/tasks/image/end/'.$model->task_id.'.'.$file->extension);
                 }
                 $model->save();
             }

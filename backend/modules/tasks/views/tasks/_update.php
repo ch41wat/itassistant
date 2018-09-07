@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use common\models\Tasks;
 use common\models\Tasktype;
 use yii\helpers\ArrayHelper;
 use dosamigos\datepicker\DatePicker;
@@ -27,9 +28,9 @@ use dosamigos\datepicker\DatePicker;
 
     <?= $form->field($model, 'staff')->textInput(['maxlength' => true, "disabled" => "disabled"]) ?>
 
-    <?= $form->field($model, 'evidence_end_img')->fileinput(); ?>
-
     <?= $form->field($model, 'status')->dropDownList(['pending' => 'Pending', 'wait for implove' => 'Wait for implove', 'progressing' => 'Progressing', 'complete' => 'Complete',], ['prompt' => '']) ?>
+
+    <?= $form->field($model, 'evidence_end_img')->fileinput(); ?>
 
     <?=
     DatePicker::widget([

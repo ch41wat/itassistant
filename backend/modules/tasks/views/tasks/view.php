@@ -39,6 +39,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'updated_at',
             'complete_date',
             'solution',
+            'evidence_end_img',
             'description',
         ],
     ]) ?>
