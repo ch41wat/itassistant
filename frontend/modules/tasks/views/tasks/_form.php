@@ -3,7 +3,7 @@
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
 use common\models\Tasktype;
-use commom\models\Employee;
+use common\models\Employee;
 use yii\helpers\ArrayHelper;
 /* @var $this yii\web\View */
 /* @var $model common\models\Tasks */
@@ -24,7 +24,7 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'priority')->dropDownList([ 'high' => 'High', 'low' => 'Low', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'staff')->dropDownList(ArrayHelper::map(Employee::find()->all(), 'id', 'firstname')) ?>
+    <?= $form->field($model, 'staff')->dropDownList(ArrayHelper::map(Employee::findAll(['department_id'=>'1']), 'id', 'firstname')) ?>
 
     <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
     
