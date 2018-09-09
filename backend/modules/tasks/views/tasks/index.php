@@ -14,15 +14,11 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="tasks-index">
 
-    <p>
-        <?= Html::button('แจ้งงาน', ['value' => Url::to('index.php?r=tasks/tasks/create'), 'class' => 'btn btn-success', 'id' => 'activity-create-link']) ?>
-    </p>
-
     <?php
     Modal::begin([
         'header' => '<h4>แจ้งงาน</h4>',
         'id' => 'activity-modal',
-        'size' => 'modal-small',
+        'size' => 'modal-lg',
     ]);
     echo "<div id='modalContent'></div>";
     Modal::end();

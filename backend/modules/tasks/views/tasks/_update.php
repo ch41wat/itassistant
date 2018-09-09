@@ -36,6 +36,7 @@ use dosamigos\datepicker\DatePicker;
     DatePicker::widget([
         'model' => $model,
         'attribute' => 'complete_date',
+        'value' => date('yy-dd-mm', strtotime('+2 days')),
         'template' => '{addon}{input}',
         'clientOptions' => [
             'autoclose' => false,

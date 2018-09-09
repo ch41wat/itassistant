@@ -20,11 +20,11 @@ use yii\helpers\ArrayHelper;
 
     <?= $form->field($model, 'task_name')->textarea(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'type')->dropDownList(ArrayHelper::map(Tasktype::find()->all(), 'type_id', 'type_name')) ?>
+    <?= $form->field($model, 'type')->dropDownList(ArrayHelper::map(Tasktype::find()->all(), 'type_name', 'type_name')) ?>
 
     <?= $form->field($model, 'priority')->dropDownList([ 'high' => 'High', 'low' => 'Low', ], ['prompt' => '']) ?>
 
-    <?= $form->field($model, 'staff')->dropDownList(ArrayHelper::map(Employee::findAll(['department_id'=>'1']), 'id', 'firstname')) ?>
+    <?= $form->field($model, 'staff')->dropDownList(ArrayHelper::map(Employee::findAll(['department_id'=>'1']), 'firstname', 'firstname')) ?>
 
     <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
     
