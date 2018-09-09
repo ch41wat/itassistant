@@ -8,6 +8,7 @@ use frontend\modules\tasks\controllers\TasksSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 
 /**
  * TasksController implements the CRUD actions for Tasks model.
@@ -66,6 +67,13 @@ class TasksController extends Controller {
             $model->user = Yii::$app->user->identity->username;
             $model->status = 'pending';
             $model->complete_date = '--';
+            if($model->save()){
+                $file = UploadedFile::getInstance($model, 'evidence_start_img');
+                if($file->size!=0){
+                    $model->evidence_start_img = $model->task_id.'_start'.'.'.$file->extension;
+                    $file->saveAs('uploads/tasks/image/start/'.$model->task_id.'_start'.'.'.$file->extension);
+                }
+            }
             if ($model->save()) {
                 return $this->redirect(['index']);
             }

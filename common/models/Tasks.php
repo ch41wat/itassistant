@@ -85,4 +85,7 @@ class Tasks extends \yii\db\ActiveRecord
     public function getUser() {
         return Yii::$app->user->identity->username;
     }
+    public function getDepartmentIT() {
+        return $this->hasOne(Employee::className(), ['id' => 'firstname']);
+    }
 }
