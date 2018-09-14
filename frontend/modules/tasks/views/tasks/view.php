@@ -39,7 +39,11 @@ $this->params['breadcrumbs'][] = $this->title;
             'status',
             'created_at:dateTime',
             'updated_at:dateTime',
-            'complete_date:date',
+//            'complete_date:date',
+            [
+                'label' => 'วันที่แก้ปัญหาเสร็จ',
+                'value' => $model->complete_date != '0000-00-00' ? $model->complete_date : 'ยังไม่ได้รับการแก้ไข',
+            ],
             [
                 'label' => 'วิธีแก้',
                 'value' => $model->solution != NULL ? $model->solution : 'ยังไม่ได้รับการแก้ไข',

@@ -94,7 +94,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'staff',
             'created_at:dateTime',
             //'updated_at',
-            'complete_date:date',
+            [
+                'attribute' => 'complete_date',
+//                'header' => 'วันที่แก้เสร็จ',
+//                'format' => 'date',
+                'value' => function($model, $key, $index) {
+                    if ($model->complete_date == '0000-00-00') {
+                        return 'ยังไม่ได้รับการแก้ไข';
+                    } else {
+                        return $model->complete_date;
+                    }
+                },
+            ],
             //'solution',
             //'description',
             'status',
