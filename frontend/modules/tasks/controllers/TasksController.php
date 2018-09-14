@@ -67,12 +67,14 @@ class TasksController extends Controller {
             $model->user = Yii::$app->user->identity->username;
             $model->status = 'pending';
             $model->complete_date = '--';
-            if($model->save()){
+            $current_image = $model->evidence_start_img;
+            if ($model->save()) {
                 $file = UploadedFile::getInstance($model, 'evidence_start_img');
-                if($file->size!=0){
-                    $model->evidence_start_img = $model->task_id.'_start'.'.'.$file->extension;
-                    $file->saveAs('uploads/tasks/image/start/'.$model->task_id.'_start'.'.'.$file->extension);
-                }
+                if (!empty($file)) {
+                    $model->evidence_start_img = $model->task_id . '_start' . '.' . $file->extension;
+                    $file->saveAs('uploads/tasks/image/start/' . $model->task_id . '_start' . '.' . $file->extension);
+                } else
+                    $model->evidence_start_img = $current_image;
             }
             if ($model->save()) {
                 return $this->redirect(['index']);
