@@ -29,6 +29,12 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'status')->dropDownList(['pending' => 'Pending', 'wait for improve' => 'Wait for improve', 'progressing' => 'Progressing', 'complete' => 'Complete',], ['prompt' => '']) ?>
 
+    <?php
+    echo $form->field($model, 'status[]')->checkboxList(
+            ['a' => 'Item A', 'b' => 'Item B', 'c' => 'Item C']
+    );
+    ?>
+
 
     <?php
     echo '<label class="control-label">วันที่แก้ปัญหาเสร็จ</label>';
@@ -46,12 +52,12 @@ use kartik\date\DatePicker;
     ?>
     <?= $form->field($model, 'solution')->textarea(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
+<?= $form->field($model, 'description')->textarea(['maxlength' => true]) ?>
 
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+<?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
     </div>
 
-    <?php ActiveForm::end(); ?>
+<?php ActiveForm::end(); ?>
 
 </div>
