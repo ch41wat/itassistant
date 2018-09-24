@@ -96,7 +96,7 @@ class TasksController extends Controller {
     public function actionUpdate($id) {
         $model = $this->findModel($id);
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && print_r($model) && $model->save()) {
             return $this->redirect(['index']);
         }
 

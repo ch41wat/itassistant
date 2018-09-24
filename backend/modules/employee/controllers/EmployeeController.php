@@ -110,11 +110,11 @@ class EmployeeController extends Controller
             if($user->save()){
                 $file = UploadedFile::getInstance($model, 'employee_picture');
                 if(isset($file->size) && $file->size!==0){
-                    $file->saveAs('uploads/employee/'.$user->firstname.'.'.$file->extension);
+                    $file->saveAs('uploads/employee/'.$user->username.'.'.$file->extension);
                 }
                 $model->save();    
             }
-            return $this->redirect(['view']);
+            return $this->redirect(['index']);
         }
 
         return $this->renderAjax('update', [

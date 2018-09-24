@@ -94,10 +94,13 @@ class AssetsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        $image = $model->image;
 
-        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
+            $model->image = $image;
             return $this->redirect(['index']);
         }
+        $model->save();
 
         return $this->renderAjax('update', [
             'model' => $model,
