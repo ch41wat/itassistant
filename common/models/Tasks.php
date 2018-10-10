@@ -26,6 +26,8 @@ class Tasks extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    const STATUS_verified = 6;
+    const STATUS_reject = 5;
     public function behaviors() {
         return [
             [
@@ -87,5 +89,13 @@ class Tasks extends \yii\db\ActiveRecord
     }
     public function getDepartmentIT() {
         return $this->hasOne(Employee::className(), ['id' => 'firstname']);
+    }
+    public static function getStatusList()
+    {
+         return [
+             self::STATUS_verified => 'Verified',
+             self::STATUS_reject => 'Reject',
+             //other values
+         ];
     }
 }

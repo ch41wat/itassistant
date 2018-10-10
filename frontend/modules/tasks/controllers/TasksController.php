@@ -95,8 +95,13 @@ class TasksController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
-        if ($model->load(Yii::$app->request->post()) && print_r($model) && $model->save()) {
+        if ($model->load(Yii::$app->request->post()) && $model->save()) {
+            if ($model->status == Tasks::STATUS_reject ){
+                $model->status = 5;
+                if ($model->status == Tasks::STATUS_verified) {
+                    $model->status = 6;
+                }
+            }
             return $this->redirect(['index']);
         }
 

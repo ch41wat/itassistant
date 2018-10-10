@@ -90,12 +90,14 @@ class TasksController extends Controller {
             if($model->save()){
                 $file = UploadedFile::getInstance($model, 'evidence_end_img');
                 if (!empty($file)) {
-                    $model->evidence_end_img = $model->task_id . '_start' . '.' . $file->extension;
+                    $model->evidence_start_img = $model->task_id . '_start' . '.' . $file->extension;
                     $file->saveAs('uploads/tasks/image/end/' . $model->task_id . '_end' . '.' . $file->extension);
                 } else
                     $model->evidence_end_img = $current_image;
             }
-            return $this->redirect(['index']);
+            if ($model->save()) {
+                return $this->redirect(['index']);
+            }
         }
 
         return $this->renderAjax('_update', [
