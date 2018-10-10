@@ -12,6 +12,12 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'role' => [
+          'class' => 'backend\modules\role\Module',
+        ],
+        'permission' => [
+            'class' => 'backend\modules\permission\Module',
+        ],
         'employee' => [
             'class' => 'backend\modules\employee\Module',
         ],

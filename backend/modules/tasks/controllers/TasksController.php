@@ -85,15 +85,15 @@ class TasksController extends Controller {
      */
     public function actionUpdate($id) {
         $model = $this->findModel($id);
-
+        $current_image = $model->evidence_end_img;
         if ($model->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
             if($model->save()){
                 $file = UploadedFile::getInstance($model, 'evidence_end_img');
-                if($file->size!=0){
-                    $model->evidence_end_img = $model->task_id.'_end'.'.'.$file->extension;
-                    $file->saveAs('uploads/tasks/image/end/'.$model->task_id.'.'.$file->extension);
-                }
-                $model->save();
+                if (!empty($file)) {
+                    $model->evidence_end_img = $model->task_id . '_start' . '.' . $file->extension;
+                    $file->saveAs('uploads/tasks/image/end/' . $model->task_id . '_end' . '.' . $file->extension);
+                } else
+                    $model->evidence_end_img = $current_image;
             }
             return $this->redirect(['index']);
         }
