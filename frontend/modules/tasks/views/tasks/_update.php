@@ -2,7 +2,6 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Tasks */
@@ -13,7 +12,7 @@ use kartik\date\DatePicker;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'status')->radioList($model->getStatusList()); ?>
+    <?= $form->field($model, 'status')->radioList($model->getStatusList())->label('ตรวจสอบแล้วสามารถใช้งานได้'); ?>
 
     <?= $form->field($model, 'solution')->textarea(['maxlength' => true, "disabled" => "disabled"]) ?>
 

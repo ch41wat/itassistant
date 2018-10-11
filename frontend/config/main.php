@@ -45,7 +45,7 @@ return [
         'view' => [
          'theme' => [
              'pathMap' => [
-                '@app/views' => '@theme/adminlte'
+                '@app/views' => '@theme/frontend'
              ],
          ],
     ],

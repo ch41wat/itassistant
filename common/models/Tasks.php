@@ -93,8 +93,8 @@ class Tasks extends \yii\db\ActiveRecord
     public static function getStatusList()
     {
          return [
-             self::STATUS_verified => 'Verified',
-             self::STATUS_reject => 'Reject',
+             self::STATUS_verified => 'ใช่',
+             self::STATUS_reject => 'ไม่ใช่',
              //other values
          ];
     }
