@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
-use kartik\date\DatePicker;
+use dosamigos\datepicker\DatePicker;
 
 /* @var $this yii\web\View */
 /* @var $model common\models\Assets */
@@ -25,15 +25,15 @@ use kartik\date\DatePicker;
 
     <?= $form->field($model, 'mac_address')->textInput(['maxlength' => true]) ?>
 
-    <?php
-    echo '<label>วันที่ซื้อ</label>';
-    echo DatePicker::widget([
-        'name' => 'purchase_date',
-        'value' => date('yyyy-dd-mm', strtotime('+2 days')),
-        'options' => ['placeholder' => 'Select issue date ...'],
-        'pluginOptions' => [
-            'format' => 'yyyy-dd-mm',
-            'todayHighlight' => true
+    <?=
+    DatePicker::widget([
+        'model' => $model,
+        'attribute' => 'purchase_date',
+        'value' => date('yy-dd-mm', strtotime('+2 days')),
+        'template' => '{addon}{input}',
+        'clientOptions' => [
+            'autoclose' => false,
+            'format' => 'yyyy-mm-dd'
         ]
     ]);
     ?>
@@ -45,8 +45,6 @@ use kartik\date\DatePicker;
     <?= $form->field($model, 'description')->textarea(['rows' => 6]) ?>
 
     <?= $form->field($model, 'image')->fileinput(); ?>
-
-    <?= $form->field($model, 'user_id')->textInput() ?>
 
     <?= $form->field($model, 'status')->dropDownList(['พร้อมใช้' => 'พร้อมใช้', 'ส่งซ่อม' => 'ส่งซ่อม', 'มีผู้ใช้แล้ว' => 'มีผู้ใช้แล้ว',], ['prompt' => '']) ?>
 

@@ -66,15 +66,16 @@ class AssetsController extends Controller
     public function actionCreate()
     {
         $model = new Assets();
-
+        $current_image = $model->image;
         if ($model->load(Yii::$app->request->post()) && $model->load(Yii::$app->request->post())) {
             if($model->save()){
                 $file = UploadedFile::getInstance($model, 'image');
-                if($file->size!=0){
+                if(!empty($file)){
                     $model->image = $model->id.'.'.$file->extension;
                     $file->saveAs('uploads/asset/'.$model->id.'.'.$file->extension);
-                }
-                $model->save();
+                } else
+                    $model->image = $current_image;
+                    $model->save();
             }
             return $this->redirect(['index']);
         }

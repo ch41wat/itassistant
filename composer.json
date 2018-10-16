@@ -24,7 +24,8 @@
         "kartik-v/yii2-grid": "@dev",
         "kartik-v/yii2-widget-datetimepicker": "*",
         "kartik-v/yii2-widget-activeform": "@dev",
-        "newerton/yii2-fancybox": "dev-master"
+        "newerton/yii2-fancybox": "dev-master",
+        "willdurand/nmap": "@stable"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

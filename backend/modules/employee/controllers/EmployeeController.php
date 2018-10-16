@@ -69,18 +69,19 @@ class EmployeeController extends Controller
     {
         $model = new Employee();
         $user = new User();
-
+        $current_image = $model->employee_picture;
         if ($model->load(Yii::$app->request->post()) && $user->load(Yii::$app->request->post())) {
             $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
             $user->auth_key = Yii::$app->security->generateRandomString();
             if($user->save()){
                 $file = UploadedFile::getInstance($model, 'employee_picture');
-                if($file->size!=0){
+                if(!empty($file)){
                     $model->picture = $model->firstname.'.'.$file->extension;
                     $file->saveAs('uploads/employee/'.$model->firstname.'.'.$file->extension);
-                }
-                $model->user_id = $user->id;
-                $model->save();
+                }else
+                    $model->employee_picture = $current_image;
+                    $model->user_id = $user->id;
+                    $model->save();
             }
             return $this->redirect(['index']);
         }
@@ -103,16 +104,18 @@ class EmployeeController extends Controller
         $model = $this->findModel($id);
         $user = $model->user;
         $oldpass =  $user->password_hash;
+        $current_image = $model->employee_picture;
         if ($model->load(Yii::$app->request->post()) && $user->Load(Yii::$app->request->post())) {
             if($oldpass!=$user->password_hash){
                 $user->password_hash = Yii::$app->security->generatePasswordHash($user->password_hash);
             }
             if($user->save()){
                 $file = UploadedFile::getInstance($model, 'employee_picture');
-                if(isset($file->size) && $file->size!==0){
+                if(!empty($file)){
                     $file->saveAs('uploads/employee/'.$user->username.'.'.$file->extension);
-                }
-                $model->save();    
+                }else
+                    $model->employee_picture = $current_image;
+                    $model->save();    
             }
             return $this->redirect(['index']);
         }
