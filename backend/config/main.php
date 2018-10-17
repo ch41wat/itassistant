@@ -33,6 +33,12 @@ return [
          'department' => [
             'class' => 'backend\modules\department\Module',
         ],
+        'licenses' => [
+            'class' => 'backend\modules\licenses\Module',
+        ],
+        'accessories' => [
+            'class' => 'backend\modules\accessories\Module',
+        ],
     ],
     'components' => [
         'request' => [

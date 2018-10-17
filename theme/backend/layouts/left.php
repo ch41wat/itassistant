@@ -42,6 +42,8 @@ use yii\helpers\Html;
                         ['label' => 'แผนก', 'icon' => 'users', 'url' => ['/department/department'],],
                         ['label' => 'พนักงาน', 'icon' => 'user', 'url' => ['/employee/employee'],],
                         ['label' => 'อุปกรณ์', 'icon' => 'tablet', 'url' => ['/assets/assets'],],
+                        ['label' => 'ซอร์ฟแวร์/Licenses', 'icon' => 'trello', 'url' => ['/licenses/licenses'],],
+                        ['label' => 'อุปกรณ์เสริม', 'icon' => 'keyboard-o', 'url' => ['/accessories/accessories'],],
                         ['label' => 'Login', 'url' => ['site/login'], 'visible' => Yii::$app->user->isGuest],
                     ],
                 ]
