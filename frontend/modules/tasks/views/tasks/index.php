@@ -115,6 +115,8 @@ $this->params['breadcrumbs'][] = $this->title;
                         return 'ผ่านการตรวจสอบ';
                     } else if($model->status == 'reject'){
                         return 'ไม่ผ่านการตรวจสอบ';
+                    } else if($model->status == 'complete'){
+                        return 'แก้ไขแล้ว';
                     } else {
                         return $model->status;
                     }

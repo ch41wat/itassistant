@@ -21,11 +21,14 @@
         "dmstr/yii2-adminlte-asset": "^2.1",
         "kartik-v/yii2-widget-datepicker": "@dev",
         "2amigos/yii2-date-picker-widget": "~1.0",
-        "kartik-v/yii2-grid": "@dev",
-        "kartik-v/yii2-widget-datetimepicker": "*",
+        "kartik-v/yii2-grid": "dev-master",
+        "kartik-v/yii2-widget-datetimepicker": "dev-master",
         "kartik-v/yii2-widget-activeform": "@dev",
         "newerton/yii2-fancybox": "dev-master",
-        "willdurand/nmap": "@stable"
+        "willdurand/nmap": "@stable",
+        "kartik-v/yii2-export": "@dev",
+        "kartik-v/yii2-helpers": "dev-master",
+        "jino5577/yii2-date-range-picker": "*"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.0.0",

@@ -1,9 +1,7 @@
 <?php
+
 $params = array_merge(
-    require __DIR__ . '/../../common/config/params.php',
-    require __DIR__ . '/../../common/config/params-local.php',
-    require __DIR__ . '/params.php',
-    require __DIR__ . '/params-local.php'
+        require __DIR__ . '/../../common/config/params.php', require __DIR__ . '/../../common/config/params-local.php', require __DIR__ . '/params.php', require __DIR__ . '/params-local.php'
 );
 
 return [
@@ -12,8 +10,11 @@ return [
     'controllerNamespace' => 'backend\controllers',
     'bootstrap' => ['log'],
     'modules' => [
+        'gridview' => [
+            'class' => '\kartik\grid\Module'
+        ],
         'role' => [
-          'class' => 'backend\modules\role\Module',
+            'class' => 'backend\modules\role\Module',
         ],
         'permission' => [
             'class' => 'backend\modules\permission\Module',
@@ -27,10 +28,10 @@ return [
         'tasks' => [
             'class' => 'backend\modules\tasks\Module',
         ],
-         'tasktype' => [
+        'tasktype' => [
             'class' => 'backend\modules\tasktype\Module',
         ],
-         'department' => [
+        'department' => [
             'class' => 'backend\modules\department\Module',
         ],
         'licenses' => [
@@ -41,12 +42,25 @@ return [
         ],
     ],
     'components' => [
+        'i18n' => [
+            'translations' => [
+                'app' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
+                'kvgrid' => [
+                    'class' => 'yii\i18n\PhpMessageSource',
+                    'basePath' => '@app/messages',
+                ],
+            ],
+        ],
         'request' => [
             'csrfParam' => '_csrf-backend',
         ],
         'user' => [
             'identityClass' => 'common\models\User',
-            'enableAutoLogin' => true,
+            'enableAutoLogin' => false,
+            //'authTimeout' => 300,
             'identityCookie' => ['name' => '_identity-backend', 'httpOnly' => true],
         ],
         'session' => [
@@ -66,20 +80,20 @@ return [
             'errorAction' => 'site/error',
         ],
         'view' => [
-         'theme' => [
-             'pathMap' => [
-                '@app/views' => '@theme/backend'
-             ],
-         ],
-    ],
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@theme/backend'
+                ],
             ],
         ],
-        */
+    /*
+      'urlManager' => [
+      'enablePrettyUrl' => true,
+      'showScriptName' => false,
+      'rules' => [
+      ],
+      ],
+     */
     ],
     'params' => $params,
 ];
